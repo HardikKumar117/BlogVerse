@@ -19,9 +19,14 @@ res.send("Api is working")
 })
 app.use("/api/admin",adminRouter)
 app.use("/api/blog",blogRouter)
-app.listen(PORT,()=>{
-    console.log(`Server is running on ${PORT}`)
-})
+
+
+if (!process.env.VERCEL) {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`Server is running on ${PORT}`);
+    });
+}
 
 
 export default app
